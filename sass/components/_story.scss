@@ -8,7 +8,16 @@
     padding-left: 9rem;
     font-size: $default-font-size;
     transform: skewX(-12deg);
+    @include respond(tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 6rem;
+    
+    }
 
+    @include respond(phone){
+        transform: skewX(0);
+    }
     & > * {
         transform: skewX(12deg);
     }
@@ -16,12 +25,21 @@
         width: 15rem;
         height: 15rem;
         float: left;
-        background-color: yellowgreen;
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%); // needs float width and height
-        clip-path: circle(50% at 50% 50%);
+        border-radius: 50%;
+        overflow: hidden;
         transform: translateX(-3rem) skewX(12deg);
         position: relative;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            clip-path: circle(50% at 50% 50%);
+            -webkit-clip-path: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%); // needs float width and height
+            border-radius: none;
+        }
+        @include respond(phone){
+        transform: translateX(-3rem) skewX(0);
+        }
     }
     &__image{
         height: 100%;
@@ -31,7 +49,9 @@
     }
     &__text{
         transform: skewX(12deg);
-
+        @include respond(phone){
+            transform:  skewX(0);
+        }
     }
     &__caption{
         position: absolute;

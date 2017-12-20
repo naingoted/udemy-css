@@ -5,7 +5,7 @@
     &:not(:last-child){
      margin-bottom: $gutter-vertical;
         @include respond(tab-port){
-         margin-right: $gutter-vertical-small;
+         margin-bottom: $gutter-vertical-small;
         }
     }
     
